@@ -4,72 +4,73 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ModeloTiendaVirtual.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="PedidoProducto">
-          <Key>
-            <PropertyRef Name="Pedido_Id" />
-            <PropertyRef Name="Productos_Id" />
-          </Key>
-          <Property Name="Pedido_Id" Type="int" Nullable="false" />
-          <Property Name="Productos_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Pedidos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Cliente" Type="varchar" MaxLength="50" />
-          <Property Name="Direccion" Type="varchar" MaxLength="200" />
-          <Property Name="Fecha" Type="datetime" />
-          <Property Name="Factura" Type="float" />
-        </EntityType>
-        <EntityType Name="Productos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="50" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
-          <Property Name="Precio" Type="float" />
-        </EntityType>
-        <Association Name="FK_PedidoProducto_Pedido">
-          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="1" />
-          <End Role="PedidoProducto" Type="Self.PedidoProducto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pedidos">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PedidoProducto">
-              <PropertyRef Name="Pedido_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PedidoProducto_Producto">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
-          <End Role="PedidoProducto" Type="Self.PedidoProducto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PedidoProducto">
-              <PropertyRef Name="Productos_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="ModeloTiendaVirtualStoreContainer">
-          <EntitySet Name="PedidoProducto" EntityType="Self.PedidoProducto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_PedidoProducto_Pedido" Association="Self.FK_PedidoProducto_Pedido">
-            <End Role="Pedidos" EntitySet="Pedidos" />
-            <End Role="PedidoProducto" EntitySet="PedidoProducto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PedidoProducto_Producto" Association="Self.FK_PedidoProducto_Producto">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="PedidoProducto" EntitySet="PedidoProducto" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="ModeloTiendaVirtual.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModeloTiendaVirtualStoreContainer">
+    <EntitySet Name="Pedidos" EntityType="ModeloTiendaVirtual.Store.Pedidos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Productos" EntityType="ModeloTiendaVirtual.Store.Productos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PedidoProducto" EntityType="ModeloTiendaVirtual.Store.PedidoProducto" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_PedidoProducto_Pedidos" Association="ModeloTiendaVirtual.Store.FK_PedidoProducto_Pedidos">
+      <End Role="Pedidos" EntitySet="Pedidos" />
+      <End Role="PedidoProducto" EntitySet="PedidoProducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PedidoProducto_Productos" Association="ModeloTiendaVirtual.Store.FK_PedidoProducto_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="PedidoProducto" EntitySet="PedidoProducto" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cliente" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Direccion" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Fecha" Type="datetime" Nullable="true" />
+    <Property Name="Factura" Type="float" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Precio" Type="float" Nullable="true" />
+    <Property Name="Cantidad" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PedidoProducto">
+    <Key>
+      <PropertyRef Name="Pedidos_Id" />
+      <PropertyRef Name="Productos_Id" />
+    </Key>
+    <Property Name="Pedidos_Id" Type="int" Nullable="false" />
+    <Property Name="Productos_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_PedidoProducto_Pedidos">
+    <End Role="Pedidos" Type="ModeloTiendaVirtual.Store.Pedidos" Multiplicity="1" />
+    <End Role="PedidoProducto" Type="ModeloTiendaVirtual.Store.PedidoProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedidos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PedidoProducto">
+        <PropertyRef Name="Pedidos_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PedidoProducto_Productos">
+    <End Role="PedidoProducto" Type="ModeloTiendaVirtual.Store.PedidoProducto" Multiplicity="*" />
+    <End Role="Productos" Type="ModeloTiendaVirtual.Store.Productos" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PedidoProducto">
+        <PropertyRef Name="Productos_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModeloTiendaVirtual" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -101,6 +102,7 @@
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Precio" Type="Double" />
           <NavigationProperty Name="Pedidos" Relationship="ModeloTiendaVirtual.PedidoProducto" FromRole="Productos" ToRole="Pedidos" />
+          <Property Name="Cantidad" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="PedidoProducto">
           <End Type="ModeloTiendaVirtual.Pedidos" Role="Pedidos" Multiplicity="*" />
@@ -110,42 +112,40 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="ModeloTiendaVirtual" />
-        <Alias Key="Target" Value="ModeloTiendaVirtual.Store" />
-        <EntityContainerMapping CdmEntityContainer="ModeloTiendaVirtualContainer" StorageEntityContainer="ModeloTiendaVirtualStoreContainer">
-          <EntitySetMapping Name="Pedidos">
-            <EntityTypeMapping TypeName="ModeloTiendaVirtual.Pedidos">
-              <MappingFragment StoreEntitySet="Pedidos">
-                <ScalarProperty Name="Factura" ColumnName="Factura" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Productos">
-            <EntityTypeMapping TypeName="ModeloTiendaVirtual.Productos">
-              <MappingFragment StoreEntitySet="Productos">
-                <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="PedidoProducto" TypeName="ModeloTiendaVirtual.PedidoProducto" StoreEntitySet="PedidoProducto">
-            <EndProperty Name="Productos">
-              <ScalarProperty Name="Id" ColumnName="Productos_Id" />
-            </EndProperty>
-            <EndProperty Name="Pedidos">
-              <ScalarProperty Name="Id" ColumnName="Pedido_Id" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModeloTiendaVirtualStoreContainer" CdmEntityContainer="ModeloTiendaVirtualContainer">
+    <EntitySetMapping Name="Pedidos">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloTiendaVirtual.Pedidos)">
+        <MappingFragment StoreEntitySet="Pedidos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Factura" ColumnName="Factura" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloTiendaVirtual.Productos)">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PedidoProducto" TypeName="ModeloTiendaVirtual.PedidoProducto" StoreEntitySet="PedidoProducto">
+      <EndProperty Name="Pedidos">
+        <ScalarProperty Name="Id" ColumnName="Pedidos_Id" />
+      </EndProperty>
+      <EndProperty Name="Productos">
+        <ScalarProperty Name="Id" ColumnName="Productos_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">

@@ -24,6 +24,7 @@ namespace TiendaVirtual
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public Nullable<double> Precio { get; set; }
+        public string Cantidad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedidos> Pedidos { get; set; }

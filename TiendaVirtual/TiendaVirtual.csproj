@@ -224,6 +224,7 @@
       <LastGenOutput>ModeloTiendaVirtual.Context.cs</LastGenOutput>
       <DependentUpon>ModeloTiendaVirtual.edmx</DependentUpon>
     </Content>
+    <Content Include="ModeloTiendaVirtual.edmx.sql" />
     <Content Include="ModeloTiendaVirtual.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModeloTiendaVirtual.cs</LastGenOutput>
