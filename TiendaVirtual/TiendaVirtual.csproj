@@ -284,19 +284,20 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Productos\Create.cshtml" />
-    <Content Include="Views\Productos\Delete.cshtml" />
-    <Content Include="Views\Productos\Details.cshtml" />
-    <Content Include="Views\Productos\Edit.cshtml" />
-    <Content Include="Views\Productos\Index.cshtml" />
     <Content Include="Views\Pedidos\Create.cshtml" />
     <Content Include="Views\Pedidos\Delete.cshtml" />
     <Content Include="Views\Pedidos\Details.cshtml" />
     <Content Include="Views\Pedidos\Edit.cshtml" />
     <Content Include="Views\Pedidos\Index.cshtml" />
+    <Content Include="Views\Productos\Create.cshtml" />
+    <Content Include="Views\Productos\Delete.cshtml" />
+    <Content Include="Views\Productos\Details.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\imgs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

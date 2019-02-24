@@ -22,3 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#gamewarriorslogo {
+    display: inline-flex;
+    height: 45px;
+    margin-top: -0.5em;
+}

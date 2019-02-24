@@ -46,7 +46,7 @@ namespace TiendaVirtual.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Descripcion,Precio")] Productos productos)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Descripcion,Precio,Cantidad")] Productos productos)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace TiendaVirtual.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Descripcion,Precio")] Productos productos)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Descripcion,Precio,Cantidad")] Productos productos)
         {
             if (ModelState.IsValid)
             {
