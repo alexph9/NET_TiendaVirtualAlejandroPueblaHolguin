@@ -14,12 +14,14 @@ namespace TiendaVirtual.Controllers
     {
         private ModeloTiendaVirtualContainer db = new ModeloTiendaVirtualContainer();
 
+        [Authorize]
         // GET: Productos
         public ActionResult Index()
         {
             return View(db.Productos.ToList());
         }
 
+        [Authorize]
         // GET: Productos/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,18 +37,22 @@ namespace TiendaVirtual.Controllers
             return View(productos);
         }
 
+        [Authorize(Users = "admin@gamewarriors.com")]
+        // password -> *Admin1*
         // GET: Productos/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Users = "admin@gamewarriors.com")]
+        // password -> *Admin1*
         // POST: Productos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Descripcion,Precio,Cantidad")] Productos productos)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Descripcion,Precio,Cantidad,Imagen")] Productos productos)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +64,8 @@ namespace TiendaVirtual.Controllers
             return View(productos);
         }
 
+        [Authorize(Users = "admin@gamewarriors.com")]
+        // password -> *Admin1*
         // GET: Productos/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -73,12 +81,14 @@ namespace TiendaVirtual.Controllers
             return View(productos);
         }
 
+        [Authorize(Users = "admin@gamewarriors.com")]
+        // password -> *Admin1*
         // POST: Productos/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Descripcion,Precio,Cantidad")] Productos productos)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Descripcion,Precio,Cantidad,Imagen")] Productos productos)
         {
             if (ModelState.IsValid)
             {
@@ -89,6 +99,8 @@ namespace TiendaVirtual.Controllers
             return View(productos);
         }
 
+        [Authorize(Users = "admin@gamewarriors.com")]
+        // password -> *Admin1*
         // GET: Productos/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -104,6 +116,8 @@ namespace TiendaVirtual.Controllers
             return View(productos);
         }
 
+        [Authorize(Users = "admin@gamewarriors.com")]
+        // password -> *Admin1*
         // POST: Productos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

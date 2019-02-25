@@ -1,14 +1,18 @@
-﻿@model IEnumerable<TiendaVirtual.Productos>
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<TiendaVirtual.Productos>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.Identity.GetUserName() == "admin@gamewarriors.com")
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -23,29 +27,50 @@
         <th>
             @Html.DisplayNameFor(model => model.Cantidad)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <th>
+                @if (item.Cantidad == "0")
+                {
+                    <img src="~/Content/imgs/producto-agotado.jpg" alt="Agotado" height="100"  width="100"/>
+                }
+                else
+                {
+                    <img src="@Url.Content(item.Imagen)" alt="Producto" height="100"  width="100"/>
+                }
+            </th>
+            @if (User.Identity.GetUserName() == "admin@gamewarriors.com")
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                </td>
+            }
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

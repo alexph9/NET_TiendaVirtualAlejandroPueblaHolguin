@@ -12,22 +12,22 @@ namespace TiendaVirtual
     using System;
     using System.Collections.Generic;
     
-    public partial class Productos
+    public partial class Producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Productos()
+        public Producto()
         {
-            this.Pedidos = new HashSet<Pedidos>();
+            this.Pedidos = new HashSet<Pedido>();
         }
     
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public Nullable<double> Precio { get; set; }
-        public string Cantidad { get; set; }
-        public string Imagen { get; set; }
+        public Nullable<int> Cantidad { get; set; }
+        public byte[] Imagen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedidos> Pedidos { get; set; }
+        public virtual ICollection<Pedido> Pedidos { get; set; }
     }
 }

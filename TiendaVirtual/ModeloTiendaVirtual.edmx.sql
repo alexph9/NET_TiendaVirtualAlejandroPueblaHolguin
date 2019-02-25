@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/24/2019 18:42:51
+-- Date Created: 02/25/2019 21:51:25
 -- Generated from EDMX file: C:\Users\alexp\Documents\miw\net\workspace\TiendaVirtual\TiendaVirtual\ModeloTiendaVirtual.edmx
 -- --------------------------------------------------
 
@@ -17,25 +17,25 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_PedidoProducto_Pedido]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PedidoProducto] DROP CONSTRAINT [FK_PedidoProducto_Pedido];
+IF OBJECT_ID(N'[dbo].[FK_PedidoProducto_Pedidos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PedidoProducto] DROP CONSTRAINT [FK_PedidoProducto_Pedidos];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PedidoProducto_Producto]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PedidoProducto] DROP CONSTRAINT [FK_PedidoProducto_Producto];
+IF OBJECT_ID(N'[dbo].[FK_PedidoProducto_Productos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PedidoProducto] DROP CONSTRAINT [FK_PedidoProducto_Productos];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[PedidoProducto]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PedidoProducto];
-GO
 IF OBJECT_ID(N'[dbo].[Pedidos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Pedidos];
 GO
 IF OBJECT_ID(N'[dbo].[Productos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Productos];
+GO
+IF OBJECT_ID(N'[dbo].[PedidoProducto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PedidoProducto];
 GO
 
 -- --------------------------------------------------
@@ -55,10 +55,11 @@ GO
 -- Creating table 'Productos'
 CREATE TABLE [dbo].[Productos] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Nombre] varchar(50)  NULL,
+    [Nombre] varchar(50)  NOT NULL,
     [Descripcion] varchar(200)  NULL,
     [Precio] float  NULL,
-    [Cantidad] nvarchar(max)  NOT NULL
+    [Cantidad] nvarchar(max)  NULL,
+    [Imagen] nvarchar(max)  NULL
 );
 GO
 
