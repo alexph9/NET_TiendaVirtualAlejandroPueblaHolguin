@@ -36,7 +36,7 @@
     <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Descripcion" Type="varchar" Nullable="true" MaxLength="200" />
     <Property Name="Precio" Type="float" Nullable="true" />
-    <Property Name="Cantidad" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Cantidad" Type="smallint" Nullable="true" />
     <Property Name="Imagen" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="PedidoProducto">
@@ -103,7 +103,7 @@
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Precio" Type="Double" />
           <NavigationProperty Name="Pedidos" Relationship="ModeloTiendaVirtual.PedidoProducto" FromRole="Productos" ToRole="Pedidos" />
-          <Property Name="Cantidad" Type="String" Nullable="true" />
+          <Property Name="Cantidad" Type="Int16" Nullable="true" />
           <Property Name="Imagen" Type="String" Nullable="true" />
         </EntityType>
         <Association Name="PedidoProducto">

@@ -7,12 +7,34 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TiendaVirtual;
+using TiendaVirtual.Models;
 
 namespace TiendaVirtual.Controllers
 {
     public class ProductosController : Controller
     {
         private ModeloTiendaVirtualContainer db = new ModeloTiendaVirtualContainer();
+
+        [Authorize]
+        public ActionResult AddToCart(CarritoPedidos pedido, int id)
+        {
+            int numProds = 0;
+            pedido.ForEach(prod =>
+            {
+                if (prod.Id == id)
+                {
+                    numProds++;
+                }
+            });
+            Productos selectedProduct = db.Productos.Find(id);
+
+            if(numProds < selectedProduct.Cantidad)
+            {
+                pedido.Add(db.Productos.Find(id));
+            }
+            
+            return RedirectToAction("Index");
+        }
 
         [Authorize]
         // GET: Productos

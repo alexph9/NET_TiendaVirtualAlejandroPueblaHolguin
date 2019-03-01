@@ -176,6 +176,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
@@ -199,6 +200,8 @@
       <DependentUpon>ModeloTiendaVirtual.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Binders\CarritoPedidosMB.cs" />
+    <Compile Include="Models\CarritoPedidos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Pedidos.cs">
@@ -294,6 +297,7 @@
     <Content Include="Views\Pedidos\Details.cshtml" />
     <Content Include="Views\Pedidos\Edit.cshtml" />
     <Content Include="Views\Pedidos\Index.cshtml" />
+    <Content Include="Views\Carrito\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

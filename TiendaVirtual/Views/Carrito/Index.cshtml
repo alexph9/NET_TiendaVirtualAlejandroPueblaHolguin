@@ -1,0 +1,91 @@
+﻿@model IEnumerable<TiendaVirtual.Productos>
+
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Index";
+}
+
+<h2>Carrito</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)€
+                </td>
+                <td>
+                    <img src="@Url.Content(item.Imagen)" alt="Producto" height="100" width="100" />
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+
+    <table class="table">
+        <tr>
+            <th>
+                Total
+            </th>
+            <td>
+                @Model.Sum(producto => producto.Precio)€
+            </td>
+        </tr>
+    </table>
+
+    <table class="table">
+        <h4>Introduzca la dirección de envío</h4>
+        <hr />
+
+        <form method="post" action="@Url.Action("Buy")" class="form-group">
+            <h6 class="col-md-2">Dirección</h6>
+            <div class="col-md-10">
+                <input type="text" name="dir" class="form-control" required />
+                <button type="submit">Comprar</button>
+            </div>
+        </form>
+    </table>
+
+}
+else
+{
+    <h4 class="text-center"> Aun no has elegido ningún producto</h4>
+    <br />
+    <img src="~/Content/imgs/emoji.png" class="center-block" alt="triste" height="100" width="100" />
+    <br />
+    <br />
+    <div class="text-center">
+        @Html.ActionLink("Elegir productos", "Index", "Productos")
+    </div>
+}
+
+

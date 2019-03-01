@@ -43,13 +43,13 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Precio)
+                @Html.DisplayFor(modelItem => item.Precio)€
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cantidad)
             </td>
             <th>
-                @if (item.Cantidad == "0")
+                @if (item.Cantidad == 0)
                 {
                     <img src="~/Content/imgs/producto-agotado.jpg" alt="Agotado" height="100"  width="100"/>
                 }
@@ -67,9 +67,15 @@
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
                 </td>
             }
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-            </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                </td>
+                <td>
+                    @if (item.Cantidad > 0)
+                    {
+                        @Html.ActionLink("Add to Cart", "AddToCart", new { id = item.Id })
+                    }
+                </td>
         </tr>
     }
 

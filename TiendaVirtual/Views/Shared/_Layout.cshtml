@@ -30,6 +30,14 @@
                         <li>
                             @Html.ActionLink("Productos", "Index", "Productos")
                         </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Carrito")" class="nav-link">
+                                <i class="glyphicon glyphicon-shopping-cart icon-white"></i>
+                                <span>
+                                  Carrito
+                                </span>
+                            </a>
+                        </li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
