@@ -53,7 +53,7 @@ namespace TiendaVirtual.Controllers
             db.SaveChanges();
             carrito.Clear();
 
-            return RedirectToAction("Index", "Productos");
+            return RedirectToAction("Index", "Pedidos");
         }
     }
 }
