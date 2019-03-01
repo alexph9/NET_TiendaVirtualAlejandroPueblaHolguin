@@ -51,11 +51,11 @@
             <th>
                 @if (item.Cantidad == 0)
                 {
-                    <img src="~/Content/imgs/producto-agotado.jpg" alt="Agotado" height="100"  width="100"/>
+                    <img src="~/Content/imgs/producto-agotado.jpg" alt="Agotado" height="120"  width="120"/>
                 }
                 else
                 {
-                    <img src="@Url.Content(item.Imagen)" alt="Producto" height="100"  width="100"/>
+                    <img src="@Url.Content(item.Imagen)" alt="Producto" height="120"  width="100"/>
                 }
             </th>
             @if (User.Identity.GetUserName() == "admin@gamewarriors.com")

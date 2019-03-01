@@ -42,7 +42,7 @@
                     @Html.DisplayFor(modelItem => item.Precio)€
                 </td>
                 <td>
-                    <img src="@Url.Content(item.Imagen)" alt="Producto" height="100" width="100" />
+                    <img src="@Url.Content(item.Imagen)" alt="Producto" height="120" width="100" />
                 </td>
                 <td>
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
@@ -80,7 +80,7 @@ else
 {
     <h4 class="text-center"> Aun no has elegido ningún producto</h4>
     <br />
-    <img src="~/Content/imgs/emoji.png" class="center-block" alt="triste" height="100" width="100" />
+    <img src="~/Content/imgs/emoji.png" class="center-block" alt="triste" height="200" width="200" />
     <br />
     <br />
     <div class="text-center">
